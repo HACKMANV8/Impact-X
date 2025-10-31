@@ -15,3 +15,4 @@ async function connectDB() {
 module.exports = connectDB;
 
 /*Its working now */ 
+/*Authenication is working  */ 
