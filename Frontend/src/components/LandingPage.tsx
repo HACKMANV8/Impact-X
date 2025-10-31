@@ -122,6 +122,240 @@ export default function LandingPage() {
 
       {/* KEEP ALL YOUR EXISTING CONTENT BELOW UNCHANGED */}
       {/* ... (your existing sections go here exactly as before) ... */}
+        {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-purple-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl mb-4">How It Works</h2>
+            <p className="text-xl text-gray-600">Get started in three simple steps</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Create Your Profile",
+                description: "Sign up as a creator or promoter and build your professional profile with your social stats and niche.",
+                icon: Users,
+                gradient: "from-pink-500 to-rose-500"
+              },
+              {
+                step: "02",
+                title: "Get AI-based Pricing",
+                description: "Our smart pricing engine analyzes your metrics and suggests fair, data-driven pricing for collaborations.",
+                icon: Sparkles,
+                gradient: "from-purple-500 to-indigo-500"
+              },
+              {
+                step: "03",
+                title: "Match & Collaborate",
+                description: "Get matched with compatible partners instantly. Chat, negotiate, and start creating amazing content together.",
+                icon: Zap,
+                gradient: "from-orange-500 to-pink-500"
+              }
+            ].map((item, index) => (
+              <Card key={index} className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2">
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient}`} />
+                <CardHeader>
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4`}>
+                    <item.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-sm text-gray-500 mb-2">{item.step}</div>
+                  <CardTitle className="text-2xl">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base">{item.description}</CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Smart Features Section */}
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl mb-4">Smart Features</h2>
+            <p className="text-xl text-gray-600">Powered by AI for better results</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-pink-50 to-purple-50 hover:shadow-2xl transition-all">
+              <CardHeader>
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center mb-4">
+                  <DollarSign className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-3xl">Smart Pricing Engine 💰</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg text-gray-600">
+                  Our AI analyzes follower count, engagement rates, niche, and market trends to predict fair promotion costs. No more guessing or unfair pricing.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-orange-50 to-pink-50 hover:shadow-2xl transition-all">
+              <CardHeader>
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-3xl">AI Matchmaking 🤝</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg text-gray-600">
+                  Automatically connects compatible creators and promoters based on niche, audience demographics, content style, and campaign goals.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Why GoViral Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-orange-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl mb-4">Why GoViral?</h2>
+            <p className="text-xl text-gray-600">The smart choice for influencer marketing</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: "Transparent Deals",
+                description: "Clear pricing, secure payments, and honest reviews. Build trust with every collaboration.",
+                color: "text-pink-500"
+              },
+              {
+                icon: TrendingUp,
+                title: "Data-Driven Pricing",
+                description: "AI-powered insights ensure you're getting or charging fair market value every time.",
+                color: "text-purple-500"
+              },
+              {
+                icon: Users,
+                title: "Trusted Community",
+                description: "Verified profiles, rating systems, and dispute resolution keep everyone accountable.",
+                color: "text-orange-500"
+              }
+            ].map((item, index) => (
+              <div key={index} className="text-center">
+                <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center mx-auto mb-6 ${item.color}`}>
+                  <item.icon className="w-10 h-10" />
+                </div>
+                <h3 className="text-2xl mb-3">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl mb-4">Success Stories</h2>
+            <p className="text-xl text-gray-600">Hear from our community</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah Johnson",
+                role: "Fashion Brand Owner",
+                avatar: "SJ",
+                content: "GoViral's AI pricing saved us thousands! We found the perfect influencers for our summer campaign and saw 300% ROI.",
+                gradient: "from-pink-500 to-rose-500"
+              },
+              {
+                name: "Mike Chen",
+                role: "Tech Influencer",
+                avatar: "MC",
+                content: "As a promoter, the AI matchmaking feature connects me with brands that actually fit my audience. My engagement has never been better!",
+                gradient: "from-purple-500 to-indigo-500"
+              },
+              {
+                name: "Emma Rodriguez",
+                role: "Beauty Creator",
+                avatar: "ER",
+                content: "Finally, a platform that values transparency! The smart pricing engine ensures I'm always charging fair rates for my work.",
+                gradient: "from-orange-500 to-pink-500"
+              }
+            ].map((testimonial, index) => (
+              <Card key={index} className="border-0 shadow-xl hover:shadow-2xl transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center text-white text-lg`}>
+                      {testimonial.avatar}
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                      <CardDescription>{testimonial.role}</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">{testimonial.content}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-pink-600 via-purple-600 to-orange-600 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <span className="text-xl">GoViral</span>
+              </div>
+              <p className="text-white/80">Bridge creators and influencers with AI-powered smart marketing.</p>
+            </div>
+            <div>
+              <h4 className="mb-4">Platform</h4>
+              <ul className="space-y-2 text-white/80">
+                <li><a href="#" className="hover:text-white">For Creators</a></li>
+                <li><a href="#" className="hover:text-white">For Promoters</a></li>
+                <li><a href="#" className="hover:text-white">Pricing</a></li>
+                <li><a href="#" className="hover:text-white">Features</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="mb-4">Company</h4>
+              <ul className="space-y-2 text-white/80">
+                <li><a href="#" className="hover:text-white">About Us</a></li>
+                <li><a href="#" className="hover:text-white">Careers</a></li>
+                <li><a href="#" className="hover:text-white">Blog</a></li>
+                <li><a href="#" className="hover:text-white">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="mb-4">Connect</h4>
+              <div className="flex gap-3">
+                <a href="#" className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/30 transition-colors">
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-white/20 text-center text-white/80">
+            <p>&copy; 2025 GoViral. All rights reserved. Built with AI-powered innovation.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
+   
