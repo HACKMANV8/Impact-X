@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import {
   Sparkles,
   User,
@@ -14,22 +14,60 @@ import {
   UserPlus,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 interface SignupPageProps {
-  onNavigate: (view: "login" | "landing") => void;
+  onNavigate?: (view: "login" | "landing") => void;
 }
 
 export default function SignupPage({ onNavigate }: SignupPageProps) {
   const [role, setRole] = useState<"creator" | "promoter">("creator");
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<Record<string, string>>({});
+  const { signup, loading } = useAuth();
+  const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle field changes
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Handle form submission
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Signup data:", { role, ...formData });
+
+    try {
+      if (role === "creator") {
+        const payload = {
+          fullName: formData.name,
+          email: formData.email,
+          password: formData.password,
+          brandName: formData.brandName,
+          websiteOrInstagram: formData.website,
+          industryOrNiche: formData.industry,
+        };
+        await signup(payload, "creator");
+        navigate("/creator");
+      } else {
+        const payload = {
+          fullName: formData.name,
+          email: formData.email,
+          password: formData.password,
+          instagramHandle: formData.handle,
+          portfolioUrl: formData.url,
+          followerCount: formData.followers,
+          averageViews: formData.views,
+          totalInteractions: formData.interactions,
+          newFollowersGained: formData.newFollowers,
+          accountsReached: formData.accountsReached,
+          niche: formData.niche,
+        };
+        await signup(payload, "promoter");
+        navigate("/promoter");
+      }
+    } catch (err) {
+      console.error("Signup Error:", err);
+    }
   };
 
   return (
@@ -95,7 +133,6 @@ export default function SignupPage({ onNavigate }: SignupPageProps) {
               <InputField icon={Globe} name="url" placeholder="Instagram or portfolio URL" onChange={handleChange} />
               <InputField icon={Users} name="followers" placeholder="Follower count (e.g. 250K)" onChange={handleChange} />
 
-              {/* Insights Section */}
               <div className="grid md:grid-cols-2 gap-3">
                 <InputField icon={Eye} name="views" placeholder="Average views" onChange={handleChange} />
                 <InputField icon={Activity} name="interactions" placeholder="Total interactions" onChange={handleChange} />
@@ -109,9 +146,10 @@ export default function SignupPage({ onNavigate }: SignupPageProps) {
 
           <Button
             type="submit"
+            disabled={loading}
             className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all"
           >
-            Sign Up
+            {loading ? "Creating Account..." : "Sign Up"}
           </Button>
         </form>
 
@@ -119,7 +157,7 @@ export default function SignupPage({ onNavigate }: SignupPageProps) {
         <p className="text-gray-600 text-sm mt-6 text-center">
           Already have an account?{" "}
           <button
-            onClick={() => onNavigate("login")}
+            onClick={() => (onNavigate ? onNavigate("login") : navigate("/login"))}
             className="text-pink-600 font-semibold hover:underline"
           >
             Login
@@ -131,7 +169,15 @@ export default function SignupPage({ onNavigate }: SignupPageProps) {
 }
 
 // 🔹 Reusable Input Component
-function InputField({ icon: Icon, name, type = "text", placeholder, onChange }: any) {
+interface InputFieldProps {
+  icon: React.ElementType;
+  name: string;
+  type?: string;
+  placeholder: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+function InputField({ icon: Icon, name, type = "text", placeholder, onChange }: InputFieldProps) {
   return (
     <div className="relative">
       <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
