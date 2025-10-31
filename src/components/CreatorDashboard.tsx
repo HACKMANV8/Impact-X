@@ -29,10 +29,11 @@ interface CreatorDashboardProps {
 export default function CreatorDashboard({ onNavigate }: CreatorDashboardProps) {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPromoter, setSelectedPromoter] = useState<Promoter | null>(null);
   const [followers, setFollowers] = useState("");
   const [avgViews, setAvgViews] = useState("");
   const [predictedPrice, setPredictedPrice] = useState<number | null>(null);
-const [selectedPromoter, setSelectedPromoter] = useState<Promoter | null>(null);
+
 
 
 
